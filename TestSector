@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Get Lattitude and Longitude onmouseover and onclick in Google Map v3 - Get lat lng on click google map version 3 - Programming - Google Maps</title>
+<meta name="keywords" content="get lattitude longitude, latlng onclick google map, latlng onmousemove google map, get lattitude longitude onclick, google map mouse event, show lattitude longutude onmousemove, show latlng onclick">
+<meta name="description" content="Get lattitude and longitude when onmouseover and onmouseclick in google map version 3. Get lat lng onclick and onmouseover on google map version 3." />
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<style type="text/css">
+body {font:10pt arial; }
+.main { text-align:center; font:12pt Arial; width:100%; height:auto; }
+.eventtext {width:100%; margin-top:20px; font:10pt Arial; text-align:left; line-height:25px; background-color:#EDF4F8;
+padding:5px; border:1px dashed #C2DAE7;}
+#mapa {width:100%; height:340px; border:5px solid #DEEBF2;}
+ul {font:10pt arial; margin-left:0px; padding:5px;}
+li {margin-left:0px; padding:5px; list-style-type:decimal;}
+.code {border:1px dashed #cecece; background-color:#F7F7F7; padding:5px;}
+.small {font:9pt arial; color:gray; padding:2px; }
+.jimi { margin:0px;}
+</style>
+
+</head>
+
+<body onload="mapa()">
+<div class="main">
+<h2 class="jimi">Get lattitude and longitude onmouseover and onclick event in google map v3 </h2>
+<div style="font:10pt arial;width:75%; text-align:left; margin:15px auto 15px auto;">
+As you move the mouse over the google map you can see the lattitude and longitude displayed below the google map.<br />
+When you click on google map the lattitude and longitude of the mouse position is displayed in the text box  below the google map.<br />
+This example is very simple so you can just view the source code to copy and use it. anyway i have explained below.
+</div>
+<div style="width:70%;  margin:0px auto;">
+<div id="mapdiv" style="width:100%; height:250px;"></div>
+<div class="eventtext">
+<div>Lattitude: <span id="latspan"></span></div>
+
+<div>Longitude: <span id="lngspan"></span></div>
+<div>Lat Lng: <span id="latlong"></span></div>
+<div>Lat Lng on click: 
+  <input type="text" id="latlongclicked" style="width:300px; border:1px inset gray;"></span></div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+var map;
+function mapa()
+{
+  var opts = {'center': new google.maps.LatLng(26.12295, -80.17122), 'zoom':11, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
+	map = new google.maps.Map(document.getElementById('mapdiv'),opts);
+	
+	google.maps.event.addListener(map,'click',function(event) {
+		document.getElementById('latlongclicked').value = event.latLng.lat() + ', ' + event.latLng.lng()
+	})
+
+	google.maps.event.addListener(map,'mousemove',function(event) {
+		document.getElementById('latspan').innerHTML = event.latLng.lat()
+		document.getElementById('lngspan').innerHTML = event.latLng.lng()
+		document.getElementById('latlong').innerHTML = event.latLng.lat() + ', ' + event.latLng.lng()
+	});
+	
+}
+</script>
+
+<br />
+<div style="width:70%;  margin:0 auto;">
+<h3>Code and Explanation</h3>
+
+<div class="small">You can also copy this code by viewing the source code of this page</div>
+
+<div class="code" style="overflow:auto;"><pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />
+var map;
+function mapa()
+{
+	var opts = {'center': new google.maps.LatLng(26.12295, -80.17122), 
+	'zoom':11, 'mapTypeId': google.maps.MapTypeId.ROADMAP }
+	map = new google.maps.Map(document.getElementById('mapdiv'),opts);
+	
+google.maps.event.addListener(map,'click',function(event) {
+	document.getElementById('latlongclicked').value = event.latLng.lat() + ', ' + event.latLng.lng()
+})
+
+google.maps.event.addListener(map,'mousemove',function(event) {
+	document.getElementById('latspan').innerHTML = event.latLng.lat()
+	document.getElementById('lngspan').innerHTML = event.latLng.lng()
+	document.getElementById('latlong').innerHTML = event.latLng.lat() + ', ' + event.latLng.lng()
+});	
+}
+&lt;/script&gt;<br />
+</pre></div>
+
+<ul style="">
+  <li>First an object representing google map properties is created with zoom level, map center and map type. </li>
+  <li>Then a map object is created. It takes two parameters. One is the div where the map should be displayed and the other is the object which contains various properties to initialize the google map.</li>
+  <li>With the above to lies the map can be displayed. </li>
+  <li>Next are the two event handlers which will display the lattitude and longitude when the move is moved over the google map or when the mouse is clicked on the map.</li>
+  <li>The event listener needs three parameters first is the map object, next is the event like onmousemove or onclick and the third parameter is the callback function to which the coordinates are passed as a parameter.</li>
+  <li>Each time the event handlers (callback functions) are called i am updating the lattitude and longitude.</li>
+</ul>
+That is all folks. Enjoy.
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5776689-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<script type="text/javascript"><!--
+google_ad_client = "pub-2494408876184900";
+/* 468x60, created 4/20/11 Programming Bottom */
+google_ad_slot = "8492987944";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</body>
+</html>
